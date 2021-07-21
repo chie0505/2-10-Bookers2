@@ -1,0 +1,15 @@
+<h2>Books</h2>
+  <thead>
+    <th></th>
+      <th>Title</th>
+      <th>Opinion</th>
+    </thead>
+
+
+          <td><%= @book.title %></td>
+          <td><%= @book.body %></td>
+
+  <% if @book.user == current_user %> 
+  <!--↑もし、投稿者 == 現在ログインしているユーザ だったら-->
+    <%= link_to "Destroy", book_path(@book), method: :delete %>
+  <% end %>
