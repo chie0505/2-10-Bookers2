@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Bookers2</title>
+    <title>Bookers</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -9,46 +9,90 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-
-     <% if user_signed_in? %>
+  <header>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="/"><span>Bookers</span></a>
+      <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="navbar-collapse collapse" id="navbarNavDropdown" style="">
+        <ul class="navbar-nav ml-auto">
+                   <% if user_signed_in? %>
      <!--ログイン済みならばtrueが、ログインしていなければfalseが返される-->
      <!--↓ログイン後に表示されるもの-->
 
-      <li>
-        <%= link_to "Home", root_path %>
-      </li>
+          <li class="">
+           <%= link_to user_path(current_user), class:"btn btn-link" do %>
+           <i class="fas fa-home" aria-hidden="true">Home</i>
+           <% end %>
+          </li>
+      <!--link_toをボタンにする-->
 
-      <li>
-        <%= link_to "Users※リンク先未設定", root_path %>
-      </li>
+          <li class="">
+           <%= link_to users_path, class:"btn btn-link" do %>
+           <i class="fas fa-users" aria-hidden="true">Users</i>
+           <% end %>
+          </li>
 
-      <li>
-        <%= link_to "Books", books_path %>
-      </li>
-
-      <li>
-        <%= link_to "logout", destroy_user_session_path, method: :delete %>
-      </li>
-    <% else %>
-    <!--↓ログイン前に表示されるもの-->
-      <li>
-        <%= link_to "Home", root_path %>
-      </li>
-      <li>
-        <%= link_to "About", about_path %>
-      </li>
-      <li>
-        <%= link_to "sign up", new_user_registration_path %>
-      </li>
-
-      <li>
-        <%= link_to "login", new_user_session_path %>
-      </li>
-    <% end %>
+          <li class="">
+           <%= link_to books_path, class:"btn btn-link" do %>
+           <i class="fas fa-book-open" aria-hidden="true">Books</i>
+           <% end %>
+          </li>
 
 
+          <li class="">
+           <%= link_to destroy_user_session_path, method: :delete, class:"btn btn-link" do %>
+           <span class="fas fa-sign-out-alt" aria-hidden="true">logout</span>
+           <% end %>
+          </li>
 
+         <% else %>
+          <!--↓ログイン前に表示されるもの-->
+
+         <li class="">
+          <%= link_to root_path, class:"btn btn-link" do %>
+          <span class="fas fa-home" aria-hidden="true">Home</span>
+          <% end %>
+         </li>
+
+         <li class="">
+          <%= link_to home_about_path, class:"btn btn-link" do %>
+          <span class="fas fa-link" aria-hidden="true">About</span>
+          <% end %>
+         </li>
+
+         <li class="">
+          <%= link_to new_user_registration_path, class:"btn btn-link" do %>
+          <span class="fas fa-user-plus" aria-hidden="true"> sign up</span>
+          <% end %>
+         </li>
+
+         <li class="">
+          <%= link_to new_user_session_path, class:"btn btn-link" do %>
+          <span class="fas fa-sign-in-alt" aria-hidden="true"> login</span>
+          <% end %>
+         </li>
+
+        <% end %>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+
+  <body class="header">
+  <p class="notice"><%= notice %></p>
   <%= yield %>
-  </body>
+     <footer>
+   　<div class="container mt-5">
+  	<div class="row">
+    	<div class="mx-auto">
+    		<p>CopyRight Infratop.inc</p>
+    	</div>
+    </div>
+  </div>
+     </footer>
+ </body>
 </html>
