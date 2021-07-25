@@ -1,25 +1,11 @@
 class BooksController < ApplicationController
   before_action :authenticate_user!
 
-  def show
-  @book = Book.find(params[:id])
-  @book = Book.find(params[:id])
-  @user = @book.user
-  @books = Book.all
-  end
-
-  def index
-    @user = current_user
-    @book = Book.new
-    @books = Book.all
-  end
-
 # 投稿データの保存
   def create
     @book = Book.new(book_params)
     @book.user_id = current_user.id
-    if
-      @book.save
+    if @book.save
       flash[:notice]="You have creatad book successfully."
       redirect_to book_path(@book)
     else
@@ -29,13 +15,27 @@ class BooksController < ApplicationController
     end
   end
 
+  def index
+    @user = current_user
+    @book = Book.new
+    @books = Book.all
+  end
+
+
+  def show
+   @book = Book.find(params[:id])
+   @user = @book.user
+   @book_new = Book.new
+  end
+
+
   def edit
      @book = Book.find(params[:id])
     if @book.user == current_user
         render "edit"
     else
         redirect_to books_path
-    end
+  end
 
   end
 
@@ -63,5 +63,8 @@ class BooksController < ApplicationController
     def book_params
       params.require(:book).permit(:title, :body)
     end
+
+
+
 
 end

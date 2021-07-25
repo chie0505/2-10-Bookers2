@@ -1,18 +1,18 @@
 <div class="container">
- <div class="row">
-  <%= render 'books/error', model: @book %>
-  <div class="col-md-3">
-  <%= render 'users/user', user: @user %>
-  <%= render 'books/book', book: @book %>
+  <div class="row">
+    <%= render 'books/error', model: @book %>
+    <div class="col-md-3">
+      <%= render 'users/user', user: @user %>
+      <%= render 'books/book', book: @book %>
 <!--↑テンプレート化　render [部分テンプレートファイルの指定], [ローカル変数]:[渡す値] %>-->
-  </div>
+    </div>
 
 
 
-  <div class="col-md-8 offset-md-1">
-   <table class="table book-index">
-    <h2>Books</h2>
-<thead>
+    <div class="col-md-8 offset-md-1">
+      <h2>Books</h2>
+      <table class="table book-index">
+        <thead>
           <th></th>
           <th>Title</th>
           <th>Opinion</th>
